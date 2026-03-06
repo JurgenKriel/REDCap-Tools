@@ -24,12 +24,15 @@ from redcap import Project, RedcapError
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-API_URL    = "https://redcap.wehi.edu.au/api/"
-TOKEN_FILE = "/vast/projects/GLIMMER/scripts/redcap_api_token.txt"
-OUTPUT_DIR = "/vast/projects/GLIMMER/scripts/logs"
+API_URL    = "https://your-redcap-instance.org/api/"
+TOKEN_FILE = "/path/to/redcap_api_token.txt"
+OUTPUT_DIR = "/path/to/logs"
 
 # All DAGs the API token has read access to — mirrors report_instruments.py
-ACCESSIBLE_DAGS = ["bpop_all_samples", "bcrl_only", "anheart", "glimmer"]
+# List the Data Access Group names your REDCap API token can access.
+# These are used to sweep all DAGs during bulk exports and lookups.
+# Example: ACCESSIBLE_DAGS = ["cohort_a", "cohort_b", "all_samples"]
+ACCESSIBLE_DAGS = ["bpop_all_samples", "bcrl_only", "anheart", "glimmer"]  # <-- update for your project
 
 
 def connect(api_url, token):

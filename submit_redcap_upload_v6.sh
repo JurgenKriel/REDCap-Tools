@@ -6,18 +6,18 @@
 #SBATCH --cpus-per-task=16
 #SBATCH --mem=32G
 #SBATCH --time=00:30:00
-#SBATCH --output=/vast/projects/GLIMMER/scripts/logs/redcap_upload_v6_%j.log
-#SBATCH --error=/vast/projects/GLIMMER/scripts/logs/redcap_upload_v6_%j.err
+#SBATCH --output=/path/to/logs/redcap_upload_v6_%j.log
+#SBATCH --error=/path/to/logs/redcap_upload_v6_%j.err
 #SBATCH --mail-type=END,FAIL
-#SBATCH --mail-user=kriel.j@wehi.edu.au
-#SBATCH --chdir=/vast/projects/GLIMMER/spatial_upload/
+#SBATCH --mail-user=your.email@institution.edu
+#SBATCH --chdir=/path/to/spatial_upload/
 
 # ============================================================
 # PER-RUN CONFIGURATION — edit these for each submission batch
 # ============================================================
-TIME_POINT_MAP="/vast/projects/GLIMMER/spatial_upload/timepoint_map.csv"
-LAB_CONTACT="Jurgen Kriel"
-DATA_DIR="/stornext/Projects/GLIMMER/data_raw/ST/ST_251212"
+TIME_POINT_MAP="/path/to/timepoint_map.csv"
+LAB_CONTACT="Your Name"
+DATA_DIR="/path/to/ST_batch_directory"
 CURRENT_INSTANCE="1"
 FACILITY_CONTACT="2"                # Radio value from REDCap codebook
 FACILITY_PROTOCOL="1"               # Radio value from REDCap codebook
@@ -29,7 +29,7 @@ DO_UPLOAD="1"                       # Set to 1 to upload to REDCap, 0 for dry-ru
 # ============================================================
 
 # Read API token from file
-TOKEN_FILE="/vast/projects/GLIMMER/scripts/redcap_api_token.txt"
+TOKEN_FILE="/path/to/redcap_api_token.txt"
 if [ ! -f "$TOKEN_FILE" ]; then
     echo "Error: API token file not found: $TOKEN_FILE"
     exit 1
@@ -51,7 +51,7 @@ if [ ! -f "$TIME_POINT_MAP" ]; then
 fi
 
 # Load virtual environment
-source /vast/projects/GLIMMER/spatial_upload/venv/bin/activate
+source /path/to/venv/bin/activate
 
 # Print run configuration
 echo "============================================================"
@@ -95,5 +95,5 @@ fi
 
 echo ""
 echo "Starting REDCap upload preparation (v6)..."
-eval python3 /vast/projects/GLIMMER/scripts/generate_redcap_st_upload_v6.py $ARGS
+eval python3 /path/to/scripts/generate_redcap_st_upload_v6.py $ARGS
 echo "Script finished."

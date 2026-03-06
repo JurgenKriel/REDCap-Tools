@@ -31,8 +31,8 @@ from redcap import Project, RedcapError
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-API_URL    = "https://redcap.wehi.edu.au/api/"
-TOKEN_FILE = "/vast/projects/GLIMMER/scripts/redcap_api_token.txt"
+API_URL    = "https://your-redcap-instance.org/api/"
+TOKEN_FILE = "/path/to/redcap_api_token.txt"
 
 DEFAULT_SAMPLE_IDS = [
     "GL0405","GL0231","GL0233","GL0218-1","GL0233-1","GL0231-1", 
@@ -43,7 +43,10 @@ SKIP_FIELDS       = {"redcap_repeat_instrument", "redcap_repeat_instance"}
 
 # All DAGs the API token has read access to.
 # Used as fallback when a sample is not found in the default DAG context.
-ACCESSIBLE_DAGS = ["bpop_all_samples", "bcrl_only", "anheart", "glimmer"]
+# List the Data Access Group names your REDCap API token can access.
+# These are used to sweep all DAGs during bulk exports and lookups.
+# Example: ACCESSIBLE_DAGS = ["cohort_a", "cohort_b", "all_samples"]
+ACCESSIBLE_DAGS = ["bpop_all_samples", "bcrl_only", "anheart", "glimmer"]  # <-- update for your project
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────

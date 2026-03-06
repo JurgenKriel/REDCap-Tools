@@ -9,9 +9,9 @@ from redcap import Project, RedcapError
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 # Configuration
-DEFAULT_DATA_DIR = "/stornext/Projects/GLIMMER/data_raw/ST/ST_250925/20250922__040656__20250922_G543_Batch7B_XEN/"
+DEFAULT_DATA_DIR = "/path/to/ST_batch_directory/"
 OUTPUT_FILE      = "st_upload_{date}_v6_api{suffix}.csv"
-DEFAULT_API_URL  = "https://redcap.wehi.edu.au/api/"
+DEFAULT_API_URL  = "https://your-redcap-instance.org/api/"
 
 # ── REDCap @DEFAULT values (codebook fields 848-857) ──────────────────────────
 REDCAP_DEFAULTS = {

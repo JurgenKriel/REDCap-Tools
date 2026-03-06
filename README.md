@@ -1,6 +1,6 @@
-# GLIMMER REDCap Tools
+# REDCap Tools
 
-Python and SLURM scripts for managing spatial transcriptomics (ST) data submissions and queries against the GLIMMER REDCap project at WEHI.
+Python and SLURM scripts for managing spatial transcriptomics (ST) data submissions and queries against a REDCap project.
 
 ---
 
@@ -22,19 +22,19 @@ Python and SLURM scripts for managing spatial transcriptomics (ST) data submissi
 ## Prerequisites
 
 - Python 3.8+
-- SLURM HPC cluster (Petrichor / WEHI HPC) for the `.slurm` / `.sh` wrappers
-- REDCap API access token for the GLIMMER project
+- SLURM HPC cluster for the `.slurm` / `.sh` wrappers
+- REDCap API access token for your project
 
 ---
 
 ## Environment Setup
 
-A shared virtual environment is expected at `/vast/projects/GLIMMER/spatial_upload/venv/`.
+A shared virtual environment is expected at `/path/to/venv/`.
 To create it from scratch:
 
 ```bash
-python3 -m venv /vast/projects/GLIMMER/spatial_upload/venv
-source /vast/projects/GLIMMER/spatial_upload/venv/bin/activate
+python3 -m venv /path/to/venv
+source /path/to/venv/bin/activate
 pip install -r requirements.txt
 ```
 
@@ -54,7 +54,7 @@ pip install -r requirements.txt
 Store your REDCap API token as plain text:
 
 ```
-/vast/projects/GLIMMER/scripts/redcap_api_token.txt
+/path/to/redcap_api_token.txt
 ```
 
 All scripts read from this path by default; override with `--token-file`.
@@ -65,13 +65,13 @@ All scripts read from this path by default; override with `--token-file`.
 Default output directory for generated CSVs and SLURM logs:
 
 ```
-/vast/projects/GLIMMER/scripts/logs/
+/path/to/logs/
 ```
 
 Create it if it does not exist:
 
 ```bash
-mkdir -p /vast/projects/GLIMMER/scripts/logs
+mkdir -p /path/to/logs
 ```
 
 ---
@@ -175,9 +175,9 @@ Two CSV types are produced:
 Edit the **PER-RUN CONFIGURATION** block at the top of `submit_redcap_upload_v6.sh` before each batch:
 
 ```bash
-DATA_DIR="/stornext/Projects/GLIMMER/data_raw/ST/ST_XXXXXX"  # path to the batch
-TIME_POINT_MAP="/vast/projects/GLIMMER/spatial_upload/timepoint_map.csv"
-LAB_CONTACT="Jurgen Kriel"
+DATA_DIR="/path/to/ST_batch_directory"  # path to the batch
+TIME_POINT_MAP="/path/to/timepoint_map.csv"
+LAB_CONTACT="Your Name"
 CURRENT_INSTANCE="1"
 FACILITY_CONTACT="2"    # radio value from REDCap codebook
 FACILITY_PROTOCOL="1"   # radio value from REDCap codebook
@@ -239,6 +239,6 @@ JJ73_1375_T2,T2,HB-T2,JJ73
 
 ## Notes
 
-- The `glimmer` DAG switch may return a permissions error — this is expected; those records are already returned by the default export context.
+- Some DAG switches may return a permissions error — this is expected; those records are typically already returned by the default export context.
 - Scripts with DAG switching (`export_redcap_sample_list.py`, `report_instruments.py`) gracefully skip DAGs they cannot access.
-- All SLURM scripts source the venv at `/vast/projects/GLIMMER/spatial_upload/venv/bin/activate` and send mail to `kriel.j@wehi.edu.au` on job end/failure.
+- All SLURM scripts source the venv at `/path/to/venv/bin/activate` and send mail to `your.email@institution.edu` on job end/failure.

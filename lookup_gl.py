@@ -13,8 +13,8 @@ from redcap import Project, RedcapError
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
-API_URL    = "https://redcap.wehi.edu.au/api/"
-TOKEN_FILE = "/vast/projects/GLIMMER/scripts/redcap_api_token.txt"
+API_URL    = "https://your-redcap-instance.org/api/"
+TOKEN_FILE = "/path/to/redcap_api_token.txt"
 
 
 def lookup_gl(project, gl_id):
