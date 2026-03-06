@@ -1,0 +1,16 @@
+# REDCap API token — never commit this
+redcap_api_token.txt
+
+# Populated timepoint map (may contain patient metadata)
+timepoint_map.csv
+
+# Generated outputs
+logs/
+*.csv
+*.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
