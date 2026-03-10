@@ -1,6 +1,6 @@
 # REDCap Tools
 
-Python and SLURM scripts for managing spatial transcriptomics (ST) data submissions and queries against a REDCap project.
+Python and SLURM scripts for data submissions and queries against a REDCap project.
 
 ---
 
